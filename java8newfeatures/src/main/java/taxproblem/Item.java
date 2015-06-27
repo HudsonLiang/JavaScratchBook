@@ -39,4 +39,10 @@ public class Item {
 		this.goods = goods;
 	}
 
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
+
 }

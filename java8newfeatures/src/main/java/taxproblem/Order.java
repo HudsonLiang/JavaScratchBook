@@ -4,15 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-
+	
+	private int id;
 	private List<Item> items = new ArrayList<Item>();
+
+	public Order(int id) {
+		this.id = id;
+	}
+
 
 	public void addItem(final Item item) {
 		this.items.add(item);
+		System.out.printf("%1$d %2$s at %3$.2f\n", item.getAccount(), item.getGoods(), item.getUnitCost());
 	}
 	
 	public Item[] getItems(){
 		return (Item[]) items.toArray();
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }

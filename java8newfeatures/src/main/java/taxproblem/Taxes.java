@@ -2,12 +2,11 @@ package taxproblem;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Taxes {
 
-	public static Function<Item, BigDecimal[]> basicSalesTax() {
+	public static Function<Item, BigDecimal> basicSalesTax() {
 
 		return (item) -> {
 			BigDecimal taxRate = BigDecimal.ZERO;
@@ -15,17 +14,13 @@ public class Taxes {
 				taxRate = new BigDecimal("0.10");
 			}
 
-			BigDecimal taxOfItem = roundUp(item.getUnitCost().mr[1].multiply(taxRate));
-
-			r[1] = r[1].add(taxOfItem);
-			return r;
-
+			return calculateTax(item, taxRate);
 		};
 
 	}
 
-	public static BiFunction<BigDecimal[], Item, BigDecimal[]> importTax() {
-		return (r, item) -> {
+	public static Function<Item, BigDecimal> importTax() {
+		return (item) -> {
 
 			BigDecimal taxRate = BigDecimal.ZERO;
 
@@ -33,15 +28,14 @@ public class Taxes {
 				taxRate = new BigDecimal("0.05");
 			}
 
-			BigDecimal taxOfItem = roundUp(r[1].multiply(taxRate));
-			r[1] = r[1].add(taxOfItem);
-			return r;
+			return calculateTax(item, taxRate);
 
 		};
 	}
 
-	private static BigDecimal roundUp(BigDecimal input) {
+	private static BigDecimal calculateTax(Item item, BigDecimal taxrate) {
 
+		BigDecimal input = item.getUnitCost().multiply(new BigDecimal(item.getAccount())).multiply(taxrate);
 
 		BigDecimal twoDecimal = input.setScale(2, RoundingMode.UP);
 		int lastDigit = twoDecimal.multiply(new BigDecimal(100)).remainder(new BigDecimal(10)).intValue();
