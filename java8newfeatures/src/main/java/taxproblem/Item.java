@@ -23,12 +23,12 @@ public class Item {
 		this.unitCost = unitCost;
 	}
 
-	public int getAccount() {
+	public int getAmount() {
 		return amount;
 	}
 
-	public void setAccount(int account) {
-		this.amount = account;
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	public Goods getGoods() {
@@ -39,10 +39,6 @@ public class Item {
 		this.goods = goods;
 	}
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
+
 
 }

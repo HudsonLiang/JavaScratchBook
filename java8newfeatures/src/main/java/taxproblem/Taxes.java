@@ -35,13 +35,13 @@ public class Taxes {
 
 	private static BigDecimal calculateTax(Item item, BigDecimal taxrate) {
 
-		BigDecimal input = item.getUnitCost().multiply(new BigDecimal(item.getAccount())).multiply(taxrate);
+		BigDecimal input = item.getUnitCost().multiply(new BigDecimal(item.getAmount())).multiply(taxrate);
 
 		BigDecimal twoDecimal = input.setScale(2, RoundingMode.UP);
 		int lastDigit = twoDecimal.multiply(new BigDecimal(100)).remainder(new BigDecimal(10)).intValue();
 		
-		while(lastDigit != 0 && lastDigit != 5){
-			twoDecimal.add(new BigDecimal("0.01"));
+		while(lastDigit != 0 && lastDigit != 5 && lastDigit != 10){
+			twoDecimal = twoDecimal.add(new BigDecimal("0.01"));
 			lastDigit++;
 		}
 		

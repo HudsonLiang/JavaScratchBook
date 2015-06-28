@@ -15,11 +15,13 @@ public class Order {
 
 	public void addItem(final Item item) {
 		this.items.add(item);
-		System.out.printf("%1$d %2$s at %3$.2f\n", item.getAccount(), item.getGoods(), item.getUnitCost());
+		System.out.printf("%1$d %2$s at %3$.2f\n", item.getAmount(), item.getGoods(), item.getUnitCost());
 	}
 	
 	public Item[] getItems(){
-		return (Item[]) items.toArray();
+		
+		Item[] itemArray = new Item[items.size()];
+		return items.toArray(itemArray);
 	}
 
 	public int getId() {

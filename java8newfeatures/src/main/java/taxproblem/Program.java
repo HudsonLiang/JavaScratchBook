@@ -26,6 +26,8 @@ public class Program {
 		order.addItem(new Item(new BigDecimal("12.49"), 1, Goods.BOOK));
 		order.addItem(new Item(new BigDecimal("14.99"), 1, Goods.CD));
 		order.addItem(new Item(new BigDecimal("0.85"), 1, Goods.CHOCOLATE));
+		
+		orders.add(order);
 
 		return orders;
 	}
