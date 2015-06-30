@@ -13,7 +13,7 @@ import taxproblem.Taxes;
 public class TaxesTest {
 
 	@Test
-	public void testBasicSalesTax() {
+	public void testRoundup() {
 		
 		Item item1 = new Item(BigDecimal.ONE, 1, Goods.CD);
 		assertEquals(new BigDecimal("0.10"), Taxes.basicSalesTax().apply(item1));
@@ -45,8 +45,52 @@ public class TaxesTest {
 	}
 
 	@Test
+	public  void testBasicSalesTax(){
+		Item item1 = new Item(BigDecimal.ONE, 1, Goods.CD);
+		assertEquals(new BigDecimal("0.10"), Taxes.basicSalesTax().apply(item1));
+		
+		Item itemfood = new Item(BigDecimal.ONE, 1, Goods.CHOCOLATE);
+		assertEquals(new BigDecimal("0.00"), Taxes.basicSalesTax().apply(itemfood));
+		
+		Item itembook = new Item(BigDecimal.ONE, 1, Goods.BOOK);
+		assertEquals(new BigDecimal("0.00"), Taxes.basicSalesTax().apply(itembook));
+		
+		Item itempill = new Item(BigDecimal.ONE, 1, Goods.PILL);
+		assertEquals(new BigDecimal("0.00"), Taxes.basicSalesTax().apply(itempill));
+		
+		Item itemimportedfood = new Item(BigDecimal.ONE, 1, Goods.IMPORTED_CHOCOLATE);
+		assertEquals(new BigDecimal("0.00"), Taxes.basicSalesTax().apply(itemimportedfood));
+		
+		Item itemimportedperfume = new Item(BigDecimal.ONE, 1, Goods.IMPORTED_PERFUME);
+		assertEquals(new BigDecimal("0.10"), Taxes.basicSalesTax().apply(itemimportedperfume));
+		
+		Item itemperfume = new Item(BigDecimal.ONE, 1, Goods.PERFUME);
+		assertEquals(new BigDecimal("0.10"), Taxes.basicSalesTax().apply(itemperfume));
+	}
+	
+	@Test
 	public void testImportTax() {
-		fail("Not yet implemented");
+		
+		Item item1 = new Item(BigDecimal.ONE, 1, Goods.CD);
+		assertEquals(new BigDecimal("0.00"), Taxes.importTax().apply(item1));
+		
+		Item itemfood = new Item(BigDecimal.ONE, 1, Goods.CHOCOLATE);
+		assertEquals(new BigDecimal("0.00"), Taxes.importTax().apply(itemfood));
+		
+		Item itembook = new Item(BigDecimal.ONE, 1, Goods.BOOK);
+		assertEquals(new BigDecimal("0.00"), Taxes.importTax().apply(itembook));
+		
+		Item itempill = new Item(BigDecimal.ONE, 1, Goods.PILL);
+		assertEquals(new BigDecimal("0.00"), Taxes.importTax().apply(itempill));
+		
+		Item itemimportedfood = new Item(BigDecimal.ONE, 1, Goods.IMPORTED_CHOCOLATE);
+		assertEquals(new BigDecimal("0.05"), Taxes.importTax().apply(itemimportedfood));
+		
+		Item itemimportedperfume = new Item(BigDecimal.ONE, 1, Goods.IMPORTED_PERFUME);
+		assertEquals(new BigDecimal("0.05"), Taxes.importTax().apply(itemimportedperfume));
+		
+		Item itemperfume = new Item(BigDecimal.ONE, 1, Goods.PERFUME);
+		assertEquals(new BigDecimal("0.00"), Taxes.importTax().apply(itemperfume));
 	}
 
 }

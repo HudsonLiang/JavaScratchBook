@@ -8,6 +8,7 @@ import java.util.List;
 public class OrderProcessor {
 
 	public void process(Order order) {
+		System.out.printf("\nOutput %1$d:\n", order.getId());
 
 		List<Double> orderTax = new ArrayList<Double>();
 		List<Double> orderCost = new ArrayList<Double>();
@@ -37,7 +38,7 @@ public class OrderProcessor {
 
 						});
 
-		System.out.printf("Sales Taxes: %1$.2f \nTotal: %2$.2f", orderTax
+		System.out.printf("Sales Taxes: %1$.2f \nTotal: %2$.2f\n", orderTax
 				.stream().mapToDouble(d -> d).sum(), orderCost.stream()
 				.mapToDouble(d -> d).sum());
 

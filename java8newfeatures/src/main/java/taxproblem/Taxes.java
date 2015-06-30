@@ -10,7 +10,7 @@ public class Taxes {
 
 		return (item) -> {
 			BigDecimal taxRate = BigDecimal.ZERO;
-			if (!item.getGoods().isFood()) {
+			if (!item.getGoods().isFood() && !item.getGoods().isBook() && !item.getGoods().isMedical()) {
 				taxRate = new BigDecimal("0.10");
 			}
 
