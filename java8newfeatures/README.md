@@ -3,7 +3,7 @@
 Sales Tax problem is a well known OO programming problem from Thoughtworks. It appeared many years ago and there are many
 discussions on Internet.
 
-No to discuss OO design of this problem here. What is interesting is how to program it using Java 8's new features: Stream, Functional interfaces and Lambda expressions
+Not to discuss OO design of this problem here. What is interesting is how to program it using Java 8's new features: Stream, Functional interfaces and Lambda expressions
 
 ##Function, Functional Interface
 First, each tax is a perfect example of <code>Function</code>.
