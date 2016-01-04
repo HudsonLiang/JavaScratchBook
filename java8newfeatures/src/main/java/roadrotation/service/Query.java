@@ -1,4 +1,4 @@
-package roadrotaion.service;
+package roadrotation.service;
 
 public interface Query {
 	

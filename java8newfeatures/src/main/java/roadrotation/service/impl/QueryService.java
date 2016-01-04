@@ -1,11 +1,11 @@
-package roadrotaion.service.impl;
+package roadrotation.service.impl;
 
-import roadrotaion.Manager;
-import roadrotaion.service.Query;
+import roadrotation.Rotater;
+import roadrotation.service.Query;
 
 public class QueryService implements Query {
 
-	private Manager manager;
+	private Rotater manager;
 
 	@Override
 	public String[] whatNow() {

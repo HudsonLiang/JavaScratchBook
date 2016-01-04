@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Rules xmlns:tns="http://github.com/HudsonLiang/roadrotation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://github.com/HudsonLiang/roadrotation roadrotation.xsd ">
+  <WeekDayRule offDate="2015-07-11" onDate="2015-04-03">
+    <WeekDaySequence>1,6</WeekDaySequence>
+    <WeekDaySequence>2,7</WeekDaySequence>
+    <WeekDaySequence>3,8</WeekDaySequence>
+    <WeekDaySequence>4,9</WeekDaySequence>
+    <WeekDaySequence>0,5</WeekDaySequence>
+  </WeekDayRule>
+</tns:Rules>
