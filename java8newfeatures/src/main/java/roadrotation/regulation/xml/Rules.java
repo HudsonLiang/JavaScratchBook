@@ -47,7 +47,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Rules {
 
 	@XmlElement(name = "WeekDayRule")
-	protected List<WeekDayRuleType> weekDayRule;
+	protected List<WeekDayRuleType> weekDayRules;
 
 	/**
 	 * Gets the value of the weekDayRule property.
@@ -72,11 +72,11 @@ public class Rules {
 	 * 
 	 * 
 	 */
-	public List<WeekDayRuleType> getWeekDayRule() {
-		if (weekDayRule == null) {
-			weekDayRule = new ArrayList<WeekDayRuleType>();
+	public List<WeekDayRuleType> getWeekDayRules() {
+		if (weekDayRules == null) {
+			weekDayRules = new ArrayList<WeekDayRuleType>();
 		}
-		return this.weekDayRule;
+		return this.weekDayRules;
 	}
 
 }

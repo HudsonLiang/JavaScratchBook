@@ -1,14 +1,12 @@
 package roadrotation.regulation.xml;
 
 import java.io.File;
-import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
-import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 
 import roadrotation.regulation.Parser;
 import roadrotation.regulation.Rule;
@@ -16,13 +14,16 @@ import roadrotation.regulation.Rule;
 public class XMLParser implements Parser {
 
 	private File ruleFile;
-	
-	public Rule[] parse() throws ParserConfigurationException, SAXException, IOException{
+
+	public Rule[] parse() throws JAXBException, FileNotFoundException {
+
+		JAXBContext jbc = JAXBContext.newInstance(Rules.class);
 		
-		DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+		Unmarshaller um = jbc.createUnmarshaller();
 		
-		Document doc = builder.parse(ruleFile);
-		doc.getChildNodes();
+		Rules rules = (Rules) um.unmarshal(new FileInputStream(ruleFile));
+
+		
 		return null;
 	}
 
