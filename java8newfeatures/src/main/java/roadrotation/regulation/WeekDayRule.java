@@ -1,6 +1,7 @@
 package roadrotation.regulation;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import roadrotation.Transition;
 
@@ -10,8 +11,10 @@ public class WeekDayRule implements Rule {
 	private String[] onRoadNumbers;
 
 	@Override
-	public Transition[] apply() {
-		// TODO Auto-generated method stub
+	public Transition apply(LocalDateTime instant) {
+		if (instant.isBefore(effectiveDate.atStartOfDay())
+				|| instant.isAfter(effectiveDate.plusDays(1).atStartOfDay()))
+			return null;
 		return null;
 	}
 

@@ -2,14 +2,11 @@ package roadrotation.regulation.xml;
 
 import java.time.LocalDate;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
-import roadrotation.regulation.Rule;
 import roadrotation.regulation.WeekDayRule;
 
-public class WeekDayRuleProcessor implements
-		Function<Rules, Stream<? extends Rule>> {
+public class WeekDayRuleProcessor implements XmlRuleProcessor {
 
 	@Override
 	public Stream<WeekDayRule> apply(Rules xmlRules) {

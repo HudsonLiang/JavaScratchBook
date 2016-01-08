@@ -7,4 +7,11 @@
     <WeekDaySequence>4,9</WeekDaySequence>
     <WeekDaySequence>0,5</WeekDaySequence>
   </WeekDayRule>
+    <WeekDayRule offDate="2016-04-10" onDate="2016-01-10">
+    <WeekDaySequence>3,8</WeekDaySequence>
+    <WeekDaySequence>4,9</WeekDaySequence>
+    <WeekDaySequence>5,0</WeekDaySequence>
+    <WeekDaySequence>6,1</WeekDaySequence>
+    <WeekDaySequence>7,2</WeekDaySequence>
+  </WeekDayRule>
 </tns:Rules>
