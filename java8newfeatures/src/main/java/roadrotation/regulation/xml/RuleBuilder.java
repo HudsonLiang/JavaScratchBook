@@ -1,5 +1,6 @@
 package roadrotation.regulation.xml;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -8,7 +9,7 @@ import roadrotation.regulation.Rule;
 
 public class RuleBuilder {
 
-	private List<Function<Rules, Stream<? extends Rule>>> xmlProcessors;
+	private List<Function<Rules, Stream<? extends Rule>>> xmlProcessors = new ArrayList<Function<Rules, Stream<? extends Rule>>>(0);
 
 	public RuleBuilder() {
 
