@@ -2,9 +2,10 @@ package roadrotation.regulation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import roadrotation.NumberCombination;
-import roadrotation.Transition;
 
 public class WeekDayRule implements Rule {
 
@@ -12,23 +13,23 @@ public class WeekDayRule implements Rule {
 	private String[] onRoadNumbers;
 
 	@Override
-	public Transition apply(LocalDateTime instant) {
+	public SortedMap<LocalDateTime, NumberCombination> apply(
+			LocalDateTime instant) {
 
 		LocalDateTime starttime = effectiveDate.atTime(7, 0);
 		LocalDateTime endtime = effectiveDate.atTime(20, 0);
+
+		SortedMap<LocalDateTime, NumberCombination> transitions = new TreeMap<LocalDateTime, NumberCombination>();
 		// if instant is before 8am effectiveDate, at starttime should transit
 		// to limited numbers
 		if (starttime.isAfter(instant) || starttime.isEqual(instant))
-			return new Transition(starttime,
+			transitions.put(starttime,
 					NumberCombination.getInstance(onRoadNumbers));
 		// if instant is in the middle of day, at endtime, should transit to all
-		else if (endtime.isEqual(instant) || endtime.isAfter(instant)
-				&& starttime.isBefore(instant)) {
-			return new Transition(endtime, NumberCombination.ALL);
-		} else {
-			// if instant is after endtime, no transition
-			return null;
-		}
+		if (endtime.isEqual(instant) || endtime.isAfter(instant))
+			transitions.put(endtime, NumberCombination.ALL);
+		
+		return transitions;
 
 	}
 

@@ -10,7 +10,7 @@ public class QueryService implements Query {
 	@Override
 	public String[] whatNow() {
 
-		return manager.getOffRoadNumbers();
+		return manager.getInEffectNumbers().getNumbers().toArray(new String[0]);
 	}
 
 }

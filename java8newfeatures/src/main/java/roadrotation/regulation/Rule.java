@@ -1,11 +1,12 @@
 package roadrotation.regulation;
 
 import java.time.LocalDateTime;
+import java.util.SortedMap;
 
-import roadrotation.Transition;
+import roadrotation.NumberCombination;
 
 public interface Rule {
 
-	Transition apply(LocalDateTime instant);
+	SortedMap<LocalDateTime, NumberCombination> apply(LocalDateTime instant);
 
 }

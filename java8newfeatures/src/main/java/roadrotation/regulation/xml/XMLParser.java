@@ -34,4 +34,12 @@ public class XMLParser implements Parser {
 		}
 	}
 
+	public File getRuleFile() {
+		return ruleFile;
+	}
+
+	public void setRuleFile(File ruleFile) {
+		this.ruleFile = ruleFile;
+	}
+
 }
