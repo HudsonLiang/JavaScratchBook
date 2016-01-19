@@ -31,13 +31,14 @@ public class WeekDayRuleProcessor implements XmlRuleProcessor {
 
 						if (startDate.getDayOfWeek().equals(DayOfWeek.SATURDAY)
 								|| startDate.getDayOfWeek().equals(
-										DayOfWeek.SUNDAY))
-							continue;
+										DayOfWeek.SUNDAY)) {
+							startDate = startDate.plusDays(1);
+						} else {
 
-						weekDayStreamBuilder.accept(startDate);
-						startDate = startDate.plusDays(1);
+							weekDayStreamBuilder.accept(startDate);
+							startDate = startDate.plusDays(1);
+						}
 					}
-
 					AtomicInteger i = new AtomicInteger(0);
 
 					String[] numbersequence = xmlRule.getWeekDaySequence()

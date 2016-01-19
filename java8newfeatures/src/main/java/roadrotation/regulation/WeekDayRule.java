@@ -2,6 +2,7 @@ package roadrotation.regulation;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -28,7 +29,7 @@ public class WeekDayRule implements Rule {
 		// if instant is in the middle of day, at endtime, should transit to all
 		if (endtime.isEqual(instant) || endtime.isAfter(instant))
 			transitions.put(endtime, NumberCombination.ALL);
-		
+
 		return transitions;
 
 	}
@@ -47,6 +48,26 @@ public class WeekDayRule implements Rule {
 
 	public void setOnRoadNumbers(String[] onRoadNumbers) {
 		this.onRoadNumbers = onRoadNumbers;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = 17;
+		
+		
+		return 31 * (31 * result + effectiveDate.hashCode() ) + Arrays.hashCode(onRoadNumbers) ;
+	
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof WeekDayRule))
+			return false;
+
+		WeekDayRule compare = (WeekDayRule) obj;
+
+		return this.effectiveDate.isEqual(compare.effectiveDate)
+				&& Arrays.equals(this.onRoadNumbers, compare.onRoadNumbers);
 	}
 
 }
