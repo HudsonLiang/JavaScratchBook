@@ -4,7 +4,6 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.TreeMap;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -28,35 +27,15 @@ public class Rotater {
 		init(new File("resources/roadrotation.xml"), LocalDateTime.now());
 	}
 
-	void init(File xmlRuleFile, LocalDateTime instant) {
+	void init(File xmlRuleFile, LocalDateTime thisTime) {
 		XMLParser xmlParser = new XMLParser();
 		xmlParser.setRuleFile(xmlRuleFile);
 
 		xmlParser.parse().forEach(
-				rule -> transitions.putAll(rule.apply(instant)));
+				rule -> transitions.putAll(rule.apply(thisTime)));
 
-	}
+		rotateAt(thisTime);
 
-	public ScheduledFuture<LocalDateTime> schedule(LocalDateTime instant) {
-
-		inEffectNumbers = transitions.floorEntry(instant) == null ? NumberCombination.ALL
-				: transitions.floorEntry(instant).getValue();
-
-		Callable<LocalDateTime> rotate = () -> {
-			LocalDateTime currentTime = LocalDateTime.now();
-			this.inEffectNumbers = transitions.floorEntry(currentTime).getValue();
-
-			return null;
-		};
-
-		ScheduledFuture<LocalDateTime> futuresRotation = scheduler.schedule(
-				() -> {
-					schedule(LocalDateTime.now());
-					return transitions.ceilingKey(instant);
-				}, instant.until(transitions.ceilingKey(instant),
-						ChronoUnit.SECONDS) + 1, TimeUnit.SECONDS);
-
-		return futuresRotation;
 	}
 
 	public NumberCombination getInEffectNumbers() {
@@ -67,4 +46,20 @@ public class Rotater {
 		return transitions;
 	}
 
+	public long rotateAt(LocalDateTime thisTime) {
+		inEffectNumbers = transitions.floorEntry(thisTime) == null ? NumberCombination.ALL
+				: transitions.floorEntry(thisTime).getValue();
+		LocalDateTime nextRunTime = transitions.ceilingKey(thisTime);
+
+		if (nextRunTime != null) {
+
+			ScheduledFuture<Long> next = scheduler.schedule(
+					() -> rotateAt(nextRunTime),
+					thisTime.until(nextRunTime, ChronoUnit.SECONDS),
+					TimeUnit.SECONDS);
+
+			return next.getDelay(TimeUnit.SECONDS);
+		}
+		return 0;
+	}
 }
