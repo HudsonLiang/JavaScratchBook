@@ -22,7 +22,7 @@ public class XmlParserTest {
 	@Test
 	public void testParse() {
 		File testXML = new File(
-				"java8newfeatures/src/test/resources/roadrotation.xml");
+				"src/test/resources/roadrotation.xml");
 		assertTrue(testXML.exists());
 
 		XMLParser parser = new XMLParser();

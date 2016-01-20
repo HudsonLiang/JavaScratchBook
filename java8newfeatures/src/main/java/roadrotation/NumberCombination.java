@@ -18,6 +18,25 @@ public enum NumberCombination {
 			return new TreeSet<String>(Arrays.asList("2", "7"));
 		}
 	},
+	THREE_EIGH {
+		@Override
+		public SortedSet<String> getNumbers() {
+			return new TreeSet<String>(Arrays.asList("8", "3"));
+		}
+	},
+	FOUR_NINE {
+		@Override
+		public SortedSet<String> getNumbers() {
+			return new TreeSet<String>(Arrays.asList("4", "9"));
+		}
+	},
+	ZERO_FIVE {
+		@Override
+		public SortedSet<String> getNumbers() {
+			return new TreeSet<String>(Arrays.asList("5", "0"));
+		}
+	},
+
 	ALL {
 
 		@Override
@@ -53,6 +72,15 @@ public enum NumberCombination {
 		if (TWO_SEVEN.getNumbers().equals(
 				new TreeSet<String>(Arrays.asList(numbers))))
 			return TWO_SEVEN;
+		if (THREE_EIGH.getNumbers().equals(
+				new TreeSet<String>(Arrays.asList(numbers))))
+			return THREE_EIGH;
+		if (FOUR_NINE.getNumbers().equals(
+				new TreeSet<String>(Arrays.asList(numbers))))
+			return FOUR_NINE;
+		if (ZERO_FIVE.getNumbers().equals(
+				new TreeSet<String>(Arrays.asList(numbers))))
+			return ZERO_FIVE;
 
 		if (ODD.getNumbers()
 				.equals(new TreeSet<String>(Arrays.asList(numbers))))

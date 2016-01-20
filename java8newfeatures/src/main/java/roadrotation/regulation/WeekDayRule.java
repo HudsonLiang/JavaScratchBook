@@ -27,8 +27,10 @@ public class WeekDayRule implements Rule {
 			transitions.put(starttime,
 					NumberCombination.getInstance(onRoadNumbers));
 		// if instant is in the middle of day, at endtime, should transit to all
-		if (endtime.isEqual(instant) || endtime.isAfter(instant))
-			transitions.put(endtime, NumberCombination.ALL);
+		if (endtime.isAfter(instant) || endtime.isEqual(instant))
+			transitions.put(starttime,
+					NumberCombination.getInstance(onRoadNumbers));
+		transitions.put(endtime, NumberCombination.ALL);
 
 		return transitions;
 
@@ -53,10 +55,10 @@ public class WeekDayRule implements Rule {
 	@Override
 	public int hashCode() {
 		int result = 17;
-		
-		
-		return 31 * (31 * result + effectiveDate.hashCode() ) + Arrays.hashCode(onRoadNumbers) ;
-	
+
+		return 31 * (31 * result + effectiveDate.hashCode())
+				+ Arrays.hashCode(onRoadNumbers);
+
 	}
 
 	@Override

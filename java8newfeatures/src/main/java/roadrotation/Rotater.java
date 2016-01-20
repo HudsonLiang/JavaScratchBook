@@ -16,6 +16,7 @@ public class Rotater {
 	private ScheduledExecutorService scheduler;
 
 	private NumberCombination inEffectNumbers;
+	private ScheduledFuture<Long> nextTransition;
 
 	public Rotater() {
 		scheduler = new ScheduledThreadPoolExecutor(1);
@@ -33,18 +34,12 @@ public class Rotater {
 
 		xmlParser.parse().forEach(
 				rule -> transitions.putAll(rule.apply(thisTime)));
-
-		rotateAt(thisTime);
-
 	}
 
 	public NumberCombination getInEffectNumbers() {
 		return inEffectNumbers;
 	}
 
-	TreeMap<LocalDateTime, NumberCombination> getTransitions() {
-		return transitions;
-	}
 
 	public long rotateAt(LocalDateTime thisTime) {
 		inEffectNumbers = transitions.floorEntry(thisTime) == null ? NumberCombination.ALL
@@ -53,12 +48,11 @@ public class Rotater {
 
 		if (nextRunTime != null) {
 
-			ScheduledFuture<Long> next = scheduler.schedule(
-					() -> rotateAt(nextRunTime),
+			nextTransition = scheduler.schedule(() -> rotateAt(nextRunTime),
 					thisTime.until(nextRunTime, ChronoUnit.SECONDS),
 					TimeUnit.SECONDS);
 
-			return next.getDelay(TimeUnit.SECONDS);
+			return nextTransition.getDelay(TimeUnit.SECONDS);
 		}
 		return 0;
 	}
