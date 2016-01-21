@@ -1,26 +1,26 @@
 package roadrotation.service.impl;
 
+import java.time.LocalDateTime;
+
 import roadrotation.Rotater;
 import roadrotation.service.Query;
 
-public class QueryService implements Query {
+public enum QueryServiceEnum implements Query {
 
-	private final static QueryService instance = new QueryService();
+	INSTANCE;
 
 	private Rotater manager;
 
-	private QueryService() {
-
+	private QueryServiceEnum() {
+		manager = new Rotater();
+		manager.init();
+		manager.rotateAt(LocalDateTime.now());
 	}
 
 	@Override
 	public String[] whatNow() {
 
 		return manager.getInEffectNumbers().getNumbers().toArray(new String[0]);
-	}
-
-	public static Query getInstance() {
-		return instance;
 	}
 
 }

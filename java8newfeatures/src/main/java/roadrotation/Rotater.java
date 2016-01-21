@@ -25,7 +25,7 @@ public class Rotater {
 
 	public void init() {
 
-		init(new File("resources/roadrotation.xml"), LocalDateTime.now());
+		init(new File("src/main/resources/roadrotation.xml"), LocalDateTime.now());
 	}
 
 	void init(File xmlRuleFile, LocalDateTime thisTime) {
