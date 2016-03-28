@@ -12,7 +12,8 @@ public class Client {
 
 			Arrays.stream(service.whatNow())
 			.forEach(n -> System.out.print(n + " "));
-			Thread.currentThread().sleep(20000);
+
+			Thread.sleep(20000);
 		}
 
 	}
