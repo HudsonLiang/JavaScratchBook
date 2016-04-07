@@ -31,13 +31,24 @@ dependencies {
 	testCompile 'junit:junit:4.12'
 }
 
+def classesFolder = file("bin")
+def assembleFolder = file("libs")
+def packageFolder = file("dist")
+
 sourceSets{
 	main{
-		output.classesDir 'bin'
-		output.resourcesDir 'bin'
+		java{
+			srcDirs "src/main/java"
+		}
+		resources{
+			srcDirs 'src/main/resources'
+
+		}
+		
+		output.classesDir classesFolder
+		output.resourcesDir classesFolder
 	}
 }
-
 
 def javahome = properties."org.gradle.java.home"
 
@@ -47,10 +58,34 @@ def fx = NamespaceBuilder.newInstance(ant, 'javafx:com.sun.javafx.tools.ant')
 
 task importJavaFXTasks << {
 
-	println "$javahome"
-
 	ant.taskdef(resource:"com/sun/javafx/tools/ant/antlib.xml", 
 		uri:"javafx:com.sun.javafx.tools.ant",
 		classpath: "${javahome}/lib/ant-javafx.jar")
-
+	
 }
+
+task jfxJar {
+	dependsOn(importJavaFXTasks,classes)
+	doLast{
+		fx.jar(destfile:"${assembleFolder}/JFXSamples.jar", verbose:true){
+  			fileset(dir:classesFolder)
+  			application(name:"fxml example", mainClass:"fxmlexample.FXMLExample")
+  	}
+  }
+}
+  
+task jfxPackage(dependsOn:jfxJar) << {
+
+
+
+ 	fx.deploy(outdir:packageFolder, outfile:"jfx", nativeBundles:"exe",verbose:true){
+ 		application(name:"fxml example", mainClass:"fxmlexample.FXMLExample")
+ 		resources{
+ 			fileset(dir:"libs", includes:"JFXSamples.jar")
+ 		}
+
+ 	}
+ 	
+} 
+
+
