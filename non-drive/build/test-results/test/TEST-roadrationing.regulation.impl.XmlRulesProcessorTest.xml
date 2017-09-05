@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="roadrationing.regulation.impl.XmlRulesProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-09-05T04:25:30" hostname="hudson.beijing.objectiva.local" time="0.011">
+  <properties/>
+  <testcase name="testFilterWeekdayRule" classname="roadrationing.regulation.impl.XmlRulesProcessorTest" time="0.011"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

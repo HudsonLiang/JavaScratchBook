@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:Rules xmlns:tns="http://github.com/HudsonLiang/roadrotation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://github.com/HudsonLiang/roadrotation roadrotation.xsd ">
+	<WeekDayRule onDate="2017-10-09" offDate="2018-01-07">
+		<WeekDaySequence>1,6</WeekDaySequence>
+		<WeekDaySequence>2,7</WeekDaySequence>
+		<WeekDaySequence>3,8</WeekDaySequence>
+		<WeekDaySequence>4,9</WeekDaySequence>
+		<WeekDaySequence>0,5</WeekDaySequence>
+	</WeekDayRule>
+	<WeekDayRule onDate="2018-01-08" offDate="2018-04-08">
+		<WeekDaySequence>0,5</WeekDaySequence>
+		<WeekDaySequence>1,6</WeekDaySequence>
+		<WeekDaySequence>2,7</WeekDaySequence>
+		<WeekDaySequence>3,8</WeekDaySequence>
+		<WeekDaySequence>4,9</WeekDaySequence>
+	</WeekDayRule>
+	<WeekDayRule onDate="2017-04-10" offDate="2017-07-09">
+		<WeekDaySequence>3,8</WeekDaySequence>
+		<WeekDaySequence>4,9</WeekDaySequence>
+		<WeekDaySequence>5,0</WeekDaySequence>
+		<WeekDaySequence>6,1</WeekDaySequence>
+		<WeekDaySequence>7,2</WeekDaySequence>
+	</WeekDayRule>
+	<WeekDayRule onDate="2017-07-09" offDate="2017-10-08">
+		<WeekDaySequence>2,7</WeekDaySequence>
+		<WeekDaySequence>3,8</WeekDaySequence>
+		<WeekDaySequence>4,9</WeekDaySequence>
+		<WeekDaySequence>5,0</WeekDaySequence>
+		<WeekDaySequence>1,6</WeekDaySequence>
+	</WeekDayRule>
+
+</tns:Rules>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>java8newfeatures</name>
-	<comment>Project java8newfeatures created by Buildship.</comment>
+	<name>non-drive</name>
+	<comment>Project non-drive created by Buildship.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -17,7 +17,7 @@
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 		<nature>org.eclipse.jdt.core.javanature</nature>
+		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
 </projectDescription>
