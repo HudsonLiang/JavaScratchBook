@@ -1,3 +1,7 @@
 #Eclipse workspace related to be ignored
 .metadata
 RemoteSystemsTempFiles
+
+**/.gradle
+**/bin
+**/build

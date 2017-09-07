@@ -6,9 +6,21 @@
  * user guide available at https://docs.gradle.org/3.5/userguide/java_library_plugin.html
  */
 
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.1'
+    }
+}
+
+
+
+apply plugin: 'com.github.johnrengelman.shadow'
 // Apply the java-library plugin to add support for Java Library
-apply plugin: 'java-library'
-apply plugin: 'distribution'
+apply plugin: 'java'
+
 
 // In this section you declare where to find the dependencies of your project
 repositories{
@@ -21,14 +33,22 @@ repositories{
 
 dependencies{
 
-    api(
-        [group:'com.amazonaws',name:'aws-lambda-java-core',version: '1.1.0'],
+	compileOnly 'com.amazonaws:aws-lambda-java-core:1.1.0'
+
+    compile(
         [group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.9.0'],
         [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'],
-        	[group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'] 
+        	[group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'], 
+        
     )
+
     
     testImplementation( 'junit:junit:4.12'
     )
 }
+
+shadowJar {
+  configurations = [project.configurations.runtime]
+}
+
 
