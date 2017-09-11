@@ -2,6 +2,7 @@ package roadrationing.awslamda;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Set;
@@ -25,7 +26,8 @@ public class CheckByTimeHanlder implements RequestHandler<String, Set<String>> {
 			return FunctionFactory.getNumbersAtTimeFunction().apply(dateTimeArg);
 
 		} catch (DateTimeParseException e) {
-			return FunctionFactory.getNumbersAtTimeFunction().apply(LocalDateTime.now());
+			
+			return FunctionFactory.getNumbersAtTimeFunction().apply(LocalDateTime.now(ZoneId.of("+8")));
 		}
 	}
 

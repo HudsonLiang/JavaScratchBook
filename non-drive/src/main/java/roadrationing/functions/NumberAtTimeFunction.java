@@ -1,6 +1,7 @@
 package roadrationing.functions;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
@@ -15,7 +16,8 @@ public class NumberAtTimeFunction implements Function<LocalDateTime, Set<String>
 
 	@Override
 	public Set<String> apply(LocalDateTime t) {
-		LocalDateTime when = t == null ? LocalDateTime.now() : t;
+
+		LocalDateTime when = t == null ? LocalDateTime.now(ZoneId.of("+8")) : t;
 
 		Optional<ApplicableRule> rule = rulesProcessor.findEffectiveRules(when);
 		if (rule.isPresent()) {
@@ -33,7 +35,5 @@ public class NumberAtTimeFunction implements Function<LocalDateTime, Set<String>
 	public void setRulesProcessor(RulesProcessor rulesProcessor) {
 		this.rulesProcessor = rulesProcessor;
 	}
-	
-	
 
 }

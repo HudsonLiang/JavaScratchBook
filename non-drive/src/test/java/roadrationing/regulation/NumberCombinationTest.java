@@ -2,6 +2,11 @@ package roadrationing.regulation;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 import org.junit.Test;
 
@@ -48,6 +53,16 @@ public class NumberCombinationTest {
 		String[] other = { "3", "8", "2" };
 		assertEquals(NumberCombination.getInstance(other), NumberCombination.ALL);
 
+	}
+	
+	@Test
+	public void testTimeConverion() {
+		
+		LocalDateTime t1 = LocalDateTime.now();
+		LocalDateTime t2 = LocalDateTime.now(ZoneId.of("+8"));
+		
+		assertEquals(t1.getHour(), t2.getHour());
+		
 	}
 
 }
