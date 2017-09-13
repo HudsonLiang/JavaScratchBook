@@ -6,6 +6,8 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import com.google.inject.Inject;
+
 import roadrationing.regulation.ApplicableRule;
 import roadrationing.regulation.RulesProcessor;
 import roadrationing.regulation.WeekDayRuleTypeProcessor;
@@ -51,6 +53,7 @@ public class XmlRulesProcessor implements RulesProcessor {
 		return weekDayRuleTypeProcessor;
 	}
 
+	@Inject
 	public void setWeekDayRuleTypeProcessor(WeekDayRuleTypeProcessor weekDayRuleTypeProcessor) {
 		this.weekDayRuleTypeProcessor = weekDayRuleTypeProcessor;
 	}

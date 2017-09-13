@@ -33,12 +33,27 @@ repositories{
 
 dependencies{
 
-	compileOnly 'com.amazonaws:aws-lambda-java-core:1.1.0'
+	compileOnly(
+	     'com.amazonaws:aws-lambda-java-core:1.1.0',
+
+	)
 
     compile(
         [group:'com.fasterxml.jackson.core', name:'jackson-annotations', version:'2.9.0'],
         [group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.0'],
         	[group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'], 
+        	// https://mvnrepository.com/artifact/com.google.inject/guice
+        [group: 'com.google.inject', name: 'guice', version: '4.1.0'],
+        // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+		[group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'],
+		// https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
+		[group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.25'],
+		// https://mvnrepository.com/artifact/com.amazonaws/aws-lambda-java-log4j
+		[group: 'com.amazonaws', name: 'aws-lambda-java-log4j', version: '1.0.0']
+
+		
+        
+        	
         
     )
 

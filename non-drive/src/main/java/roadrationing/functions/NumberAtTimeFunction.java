@@ -7,6 +7,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
 
+import com.google.inject.Inject;
+
 import roadrationing.regulation.ApplicableRule;
 import roadrationing.regulation.RulesProcessor;
 
@@ -32,8 +34,11 @@ public class NumberAtTimeFunction implements Function<LocalDateTime, Set<String>
 		return rulesProcessor;
 	}
 
+	@Inject
 	public void setRulesProcessor(RulesProcessor rulesProcessor) {
 		this.rulesProcessor = rulesProcessor;
 	}
+
+
 
 }

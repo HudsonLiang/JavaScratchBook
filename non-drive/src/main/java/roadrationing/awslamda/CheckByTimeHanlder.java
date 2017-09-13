@@ -6,16 +6,25 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Set;
+import java.util.function.Function;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import roadrationing.functions.FunctionFactory;
+import roadrationing.init.Initializer;
+import roadrationing.init.NumberAtTimeFunctionProvider.NumberAtTime;
 
 public class CheckByTimeHanlder implements RequestHandler<String, Set<String>> {
 
+	private static Logger LOG = LoggerFactory.getLogger(CheckByTimeHanlder.class);
+
 	@Override
 	public Set<String> handleRequest(String dateTimeString, Context context) {
+
+		Function<LocalDateTime, Set<String>> function = Initializer.getFunction(NumberAtTime.class);
 
 		try {
 
@@ -23,11 +32,12 @@ public class CheckByTimeHanlder implements RequestHandler<String, Set<String>> {
 				throw new DateTimeException("Date time string is null");
 
 			LocalDateTime dateTimeArg = LocalDateTime.parse(dateTimeString, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-			return FunctionFactory.getNumbersAtTimeFunction().apply(dateTimeArg);
+
+			return function.apply(dateTimeArg);
 
 		} catch (DateTimeParseException e) {
-			
-			return FunctionFactory.getNumbersAtTimeFunction().apply(LocalDateTime.now(ZoneId.of("+8")));
+
+			return function.apply(LocalDateTime.now(ZoneId.of("+8")));
 		}
 	}
 
