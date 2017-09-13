@@ -6,3 +6,4 @@ RemoteSystemsTempFiles
 **/.gradle
 **/bin
 **/build
+**/.settings
