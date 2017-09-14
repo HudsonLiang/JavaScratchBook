@@ -8,18 +8,14 @@ import java.time.format.DateTimeParseException;
 import java.util.Set;
 import java.util.function.Function;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 
-import roadrationing.init.Initializer;
-import roadrationing.init.NumberAtTimeFunctionProvider.NumberAtTime;
+import roadrationing.Initializer;
+import roadrationing.functions.NumberAtTime;
 
 public class CheckByTimeHanlder implements RequestHandler<String, Set<String>> {
 
-	private static Logger LOG = LoggerFactory.getLogger(CheckByTimeHanlder.class);
 
 	@Override
 	public Set<String> handleRequest(String dateTimeString, Context context) {

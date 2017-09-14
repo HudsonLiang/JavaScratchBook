@@ -1,9 +1,7 @@
-package roadrationing.init;
+package roadrationing.regulation;
 
 import com.google.inject.AbstractModule;
 
-import roadrationing.regulation.RulesProcessor;
-import roadrationing.regulation.WeekDayRuleTypeProcessor;
 import roadrationing.regulation.impl.DefaultWeekdayRuleTypeProcessor;
 import roadrationing.regulation.impl.XmlRulesProcessor;
 

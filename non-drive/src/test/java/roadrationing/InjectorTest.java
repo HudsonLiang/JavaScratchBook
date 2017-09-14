@@ -1,6 +1,7 @@
 package roadrationing;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -14,11 +15,12 @@ import com.google.inject.Guice;
 import com.google.inject.Key;
 import com.google.inject.util.Modules;
 
+import roadrationing.aop.AopModule;
+import roadrationing.functions.FunctionsModule;
+import roadrationing.functions.NumberAtTime;
 import roadrationing.functions.NumberAtTimeFunction;
 import roadrationing.functions.TestFunction;
-import roadrationing.init.FunctionsModule;
-import roadrationing.init.NumberAtTimeFunctionProvider.NumberAtTime;
-import roadrationing.init.ProcessorModule;
+import roadrationing.regulation.ProcessorModule;
 
 public class InjectorTest {
 
@@ -34,14 +36,15 @@ public class InjectorTest {
 	public void testFunctionModule() {
 
 		@SuppressWarnings("unchecked")
-		Function<LocalDateTime, Set<String>> testFunction = Guice.createInjector(new FunctionsModule(), new ProcessorModule())
+		Function<LocalDateTime, Set<String>> testFunction = Guice.createInjector(new FunctionsModule(), new ProcessorModule(), new AopModule())
 				.getInstance(Key.get(Function.class, NumberAtTime.class));
 
 		assertTrue(testFunction instanceof NumberAtTimeFunction);
 
 		NumberAtTimeFunction theFunction = (NumberAtTimeFunction) testFunction;
+		
+		theFunction.apply(null);
 
-		assertTrue(theFunction.getRulesProcessor() != null);
 
 	}
 
@@ -58,7 +61,7 @@ public class InjectorTest {
 
 		@SuppressWarnings("unchecked")
 		Function<LocalDateTime, Set<String>> functionInOverrideModule = Guice
-				.createInjector(Modules.override(new FunctionsModule(), new ProcessorModule()).with(new TestModule()))
+				.createInjector(Modules.override(new FunctionsModule(), new ProcessorModule(), new AopModule()).with(new TestModule()))
 				.getInstance(Key.get(Function.class, NumberAtTime.class));
 		results = functionInOverrideModule.apply(LocalDateTime.now());
 

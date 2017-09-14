@@ -2,7 +2,6 @@ package roadrationing.regulation.impl;
 
 import java.io.File;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.Optional;
 

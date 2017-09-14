@@ -4,8 +4,8 @@ import java.util.function.Function;
 
 import com.google.inject.AbstractModule;
 
+import roadrationing.functions.NumberAtTime;
 import roadrationing.functions.TestNumberAtTimeFuntionProvider;
-import roadrationing.init.NumberAtTimeFunctionProvider.NumberAtTime;
 
 public class TestModule extends AbstractModule {
 

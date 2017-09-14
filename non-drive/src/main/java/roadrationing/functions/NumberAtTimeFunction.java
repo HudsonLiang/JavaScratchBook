@@ -9,6 +9,7 @@ import java.util.function.Function;
 
 import com.google.inject.Inject;
 
+import roadrationing.aop.EntryExitLog;
 import roadrationing.regulation.ApplicableRule;
 import roadrationing.regulation.RulesProcessor;
 
@@ -16,6 +17,13 @@ public class NumberAtTimeFunction implements Function<LocalDateTime, Set<String>
 
 	private RulesProcessor rulesProcessor;
 
+	@Inject
+	NumberAtTimeFunction(RulesProcessor rulesProcessor) {
+
+		this.rulesProcessor = rulesProcessor;
+	}
+
+	@EntryExitLog
 	@Override
 	public Set<String> apply(LocalDateTime t) {
 
@@ -29,16 +37,5 @@ public class NumberAtTimeFunction implements Function<LocalDateTime, Set<String>
 
 			return Collections.emptySet();
 	}
-
-	public RulesProcessor getRulesProcessor() {
-		return rulesProcessor;
-	}
-
-	@Inject
-	public void setRulesProcessor(RulesProcessor rulesProcessor) {
-		this.rulesProcessor = rulesProcessor;
-	}
-
-
 
 }
