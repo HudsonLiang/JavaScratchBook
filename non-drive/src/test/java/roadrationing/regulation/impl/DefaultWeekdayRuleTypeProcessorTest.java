@@ -43,10 +43,10 @@ public class DefaultWeekdayRuleTypeProcessorTest {
 
 		WeekDayRuleTypeProcessor processorToTest = new DefaultWeekdayRuleTypeProcessor();
 		Optional<ApplicableRule> applicableRule = processorToTest.findEffective(weekdayRuleTypeList,
-				LocalDate.of(2017, 8, 31));
+				LocalDate.of(2018, 4, 18));
 		assertTrue("No rule applicable found", applicableRule.isPresent());
 
-		assertEquals(NumberCombination.ZERO_FIVE, applicableRule.get().getNumbersOffRoad());
+		assertEquals(NumberCombination.ONE_SIX, applicableRule.get().getNumbersOffRoad());
 	}
 
 }

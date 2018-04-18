@@ -17,13 +17,13 @@ import roadrationing.regulation.impl.XmlRulesProcessor;
 public class XmlRulesProcessorTest {
 
 	private Optional<ApplicableRule> applicableRule;
-	private LocalDateTime DT_2017_8_30_7AM = LocalDateTime.of(2017, 8, 30, 7, 0);
-	private LocalDateTime DT_2017_8_30_8PM = LocalDateTime.of(2017, 8, 30, 20, 0);
+	private LocalDateTime DT_2018_8_30_7AM = LocalDateTime.of(2018, 8, 30, 7, 0);
+	private LocalDateTime DT_2018_8_30_8PM = LocalDateTime.of(2018, 8, 30, 20, 0);
 
 	@Before
 	public void setUp() throws Exception {
 
-		applicableRule = Optional.of(new ApplicableRule(NumberCombination.ALL, DT_2017_8_30_7AM, DT_2017_8_30_8PM));
+		applicableRule = Optional.of(new ApplicableRule(NumberCombination.ALL, DT_2018_8_30_7AM, DT_2018_8_30_7AM));
 	}
 
 	@After
@@ -36,9 +36,9 @@ public class XmlRulesProcessorTest {
 		XmlRulesProcessor xmlProcessor = new XmlRulesProcessor();
 
 		xmlProcessor.setWeekDayRuleTypeProcessor(new DefaultWeekdayRuleTypeProcessor());
-		Optional<ApplicableRule> ruleReturned = xmlProcessor.findEffectiveRules(LocalDateTime.of(2017, 8, 30, 14, 12));
+		Optional<ApplicableRule> ruleReturned = xmlProcessor.findEffectiveRules(LocalDateTime.of(2018, 8, 30, 14, 12));
 		assertTrue(ruleReturned.isPresent());
-		ruleReturned = xmlProcessor.findEffectiveRules(LocalDateTime.of(2017, 8, 30, 20, 12));
+		ruleReturned = xmlProcessor.findEffectiveRules(LocalDateTime.of(2018, 8, 30, 20, 12));
 		assertTrue(!ruleReturned.isPresent());
 
 	}
